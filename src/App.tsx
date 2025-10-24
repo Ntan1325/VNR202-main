@@ -11,6 +11,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AnimatedBackground from "./components/AnimatedBackground";
+import CinematicIntro from "./components/CinematicIntro";
+import ReadingProgressBar from "./components/ReadingProgressBar";
 import Home from "./pages/Home";
 import Chapters from "./pages/Chapters";
 import Article from "./pages/Article";
@@ -35,6 +37,15 @@ function AppContent() {
   const { i18n } = useTranslation();
   const location = useLocation();
   const isChatRoute = location.pathname.startsWith("/chat");
+  const [showIntro, setShowIntro] = React.useState(() => {
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    return !hasSeenIntro;
+  });
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('hasSeenIntro', 'true');
+    setShowIntro(false);
+  };
 
   React.useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -43,15 +54,19 @@ function AppContent() {
   }, [i18n.language]);
 
   return (
-    <div
-      className={[
-        "flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white",
-        isChatRoute ? "overflow-hidden" : "",
-      ].join(" ")}
-    >
-      <AnimatedBackground />
-      <ScrollToTop />
-      <Header />
+    <>
+      {showIntro && <CinematicIntro onComplete={handleIntroComplete} />}
+
+      <div
+        className={[
+          "flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white",
+          isChatRoute ? "overflow-hidden" : "",
+        ].join(" ")}
+      >
+        <ReadingProgressBar />
+        <AnimatedBackground />
+        <ScrollToTop />
+        <Header />
 
       <AnimatePresence mode="wait">
         <motion.main
@@ -76,7 +91,8 @@ function AppContent() {
       </AnimatePresence>
 
       {!isChatRoute && <Footer />}
-    </div>
+      </div>
+    </>
   );
 }
 

@@ -29,7 +29,7 @@ const MODEL_ID = "gemini-1.5-flash";
 const bubbleCommon =
   "relative max-w-[85%] md:max-w-[70%] rounded-2xl px-4 py-3 shadow-lg border border-white/10 backdrop-blur-md";
 const gradientText =
-  "bg-gradient-to-r from-amber-100 via-yellow-200 to-pink-200 bg-clip-text text-transparent";
+  "text-revolutionary-600 dark:text-gold-400";
 
 const MessageBubbleInner = ({
   message,
@@ -59,14 +59,14 @@ const MessageBubbleInner = ({
       <div
         className={`${bubbleCommon} ${
           isUser
-            ? "bg-gradient-to-r from-red-500/70 via-amber-500/70 to-purple-500/70 text-white"
-            : "bg-white/6 text-white"
+            ? "bg-revolutionary-600 text-parchment-50"
+            : "bg-parchment-50/95 dark:bg-brown-800/95 text-deeptext-900 dark:text-parchment-100"
         }`}
       >
         <div className="flex items-start gap-3">
           {!isUser && (
-            <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/60 via-amber-500/60 to-purple-500/60">
-              <Bot className="h-5 w-5 text-white" />
+            <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-gold-500">
+              <Bot className="h-5 w-5 text-deeptext-900" />
             </div>
           )}
 
@@ -77,7 +77,7 @@ const MessageBubbleInner = ({
               </ReactMarkdown>
             </div>
 
-            <div className="flex items-center justify-end gap-2 text-xs text-white/70">
+            <div className="flex items-center justify-end gap-2 text-xs opacity-70">
               <span>
                 {new Date(message.createdAt).toLocaleTimeString(undefined, {
                   hour: "2-digit",
@@ -87,7 +87,7 @@ const MessageBubbleInner = ({
               <button
                 type="button"
                 onClick={onCopy}
-                className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 transition hover:border-white/20 hover:bg-white/10"
+                className="inline-flex items-center gap-1 rounded-full border border-current/20 bg-current/10 px-2.5 py-1 transition hover:border-current/30 hover:bg-current/20"
               >
                 {isCopied ? (
                   <>
@@ -106,7 +106,7 @@ const MessageBubbleInner = ({
         </div>
 
         {isLatest && (
-          <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/10" />
+          <div className="pointer-events-none absolute inset-0 rounded-2xl border border-gold-500/30" />
         )}
       </div>
     </motion.div>
@@ -245,12 +245,11 @@ ANSWERING RULES:
   );
 
   return (
-    <section className="relative min-h-screen pt-20  overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-red-800/40 via-purple-900/50 to-fuchsia-900/60" />
-      <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_220px_rgba(0,0,0,0.6)]" />
+    <section className="relative min-h-screen pt-20 overflow-hidden bg-parchment-100 dark:bg-brown-900">
+      <div className="absolute inset-0 bg-gradient-to-br from-revolutionary-600/5 via-gold-500/5 to-parchment-200/5 dark:from-revolutionary-900/20 dark:via-brown-800/20 dark:to-brown-900/20" />
       <motion.div
         aria-hidden
-        className="absolute inset-y-0 -left-1/3 w-1/4 bg-white/5 blur-3xl"
+        className="absolute inset-y-0 -left-1/3 w-1/4 bg-gold-500/10 blur-3xl"
         animate={{ x: ["0%", "180%"] }}
         transition={{ duration: 18, ease: "linear", repeat: Infinity }}
       />
@@ -260,16 +259,16 @@ ANSWERING RULES:
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/8 shadow-[0_18px_55px_rgba(0,0,0,0.35)]"
+          className="relative overflow-hidden rounded-3xl border border-parchment-600/30 dark:border-brown-700/50 bg-parchment-50/90 dark:bg-brown-800/90 backdrop-blur-sm shadow-xl"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gold-500/5 via-transparent to-transparent opacity-40" />
 
           <div className="relative z-10 p-6 sm:p-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <div className="mb-3 inline-flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 via-amber-500 to-purple-500">
-                    <MessageCircle className="h-6 w-6 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-revolutionary-600">
+                    <MessageCircle className="h-6 w-6 text-parchment-50" />
                   </div>
                   <div>
                     <h1
@@ -277,7 +276,7 @@ ANSWERING RULES:
                     >
                       {t("chat.title")}
                     </h1>
-                    <p className="text-sm sm:text-base text-white/80">
+                    <p className="text-sm sm:text-base text-deeptext-800 dark:text-parchment-200">
                       {t("chat.subtitle")}
                     </p>
                   </div>
@@ -287,7 +286,7 @@ ANSWERING RULES:
               <button
                 type="button"
                 onClick={handleClear}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white/85 transition hover:bg-white/15"
+                className="inline-flex items-center gap-2 rounded-full border border-parchment-600/30 dark:border-brown-600/50 bg-parchment-100/50 dark:bg-brown-700/50 px-4 py-2 text-sm font-medium text-deeptext-900 dark:text-parchment-100 transition hover:bg-parchment-200/50 dark:hover:bg-brown-600/50"
               >
                 <Trash2 className="h-4 w-4" />
                 {t("chat.clear")}
@@ -304,7 +303,7 @@ ANSWERING RULES:
                     <motion.div
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="rounded-2xl border border-white/10 bg-white/8 px-5 py-6 text-center text-white/75"
+                      className="rounded-2xl border border-parchment-600/30 dark:border-brown-700/50 bg-parchment-100/50 dark:bg-brown-800/50 px-5 py-6 text-center text-deeptext-700 dark:text-parchment-200"
                     >
                       {t("chat.emptyState")}
                     </motion.div>
@@ -331,7 +330,7 @@ ANSWERING RULES:
                         duration: 1.2,
                         ease: "easeInOut",
                       }}
-                      className={`${bubbleCommon} w-fit bg-white/10 text-white/70`}
+                      className={`${bubbleCommon} w-fit bg-gold-100/50 dark:bg-gold-900/30 text-deeptext-700 dark:text-gold-200`}
                     >
                       <div className="flex items-center gap-2 text-sm">
                         <Sparkles className="h-4 w-4 animate-spin" />
@@ -350,7 +349,7 @@ ANSWERING RULES:
                 </div>
               )}
 
-              <div className="rounded-2xl border border-white/15 bg-white/8 p-4 backdrop-blur">
+              <div className="rounded-2xl border border-parchment-600/30 dark:border-brown-700/50 bg-parchment-100/70 dark:bg-brown-800/70 p-4 backdrop-blur">
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-2 items-stretch">
                     <TextareaAutosize
@@ -360,14 +359,14 @@ ANSWERING RULES:
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleKeyDown}
                       placeholder={t("chat.inputPlaceholder") ?? "Type here..."}
-                      className="w-full resize-none rounded-l-2xl border border-white/10 border-r-0 bg-black/20 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-amber-400/60 focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                      className="w-full resize-none rounded-l-2xl border border-parchment-600/30 dark:border-brown-600/50 border-r-0 bg-parchment-50 dark:bg-brown-900 px-4 py-3 text-sm text-deeptext-900 dark:text-parchment-100 placeholder:text-deeptext-500 dark:placeholder:text-parchment-400 focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-500/40"
                     />
 
                     <button
                       type="button"
                       onClick={handleSubmit}
                       disabled={isLoading || !input.trim()}
-                      className="inline-flex shrink-0 self-stretch items-center gap-2 rounded-r-2xl bg-gradient-to-r from-red-500 via-amber-500 to-purple-500 px-5 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
+                      className="inline-flex shrink-0 self-stretch items-center gap-2 rounded-r-2xl bg-revolutionary-600 px-5 text-sm font-semibold text-parchment-50 shadow-lg transition hover:bg-revolutionary-700 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
                     >
                       <Send className="h-4 w-4" />
                       {t("chat.send")}

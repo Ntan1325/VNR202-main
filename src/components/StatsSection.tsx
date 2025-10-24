@@ -1,5 +1,5 @@
 // components/StatsSection.tsx
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import CountUp from "react-countup";
 import {
@@ -8,6 +8,7 @@ import {
   CircleCheck as CheckCircle,
   Users,
 } from "lucide-react";
+import { useRef } from "react";
 
 const stats = [
   { icon: BookOpen, value: 16, labelVi: "Bài viết triết học", labelEn: "Philosophy Articles" ,suffix: "+"},
@@ -19,6 +20,14 @@ const stats = [
 export default function StatsSection() {
   const { i18n } = useTranslation();
   const isVietnamese = i18n.language === "vi";
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 5]);
 
   const container = {
     hidden: { opacity: 0, y: 20 },
@@ -35,7 +44,7 @@ export default function StatsSection() {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section ref={sectionRef} className="relative py-20 overflow-hidden">
       {/* Nền đồng bộ Hero: gradient đỏ→tím + vignette + light sweep nhẹ */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-800/40 via-purple-900/50 to-fuchsia-900/60" />
       <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_200px_rgba(0,0,0,0.55)]" />
@@ -58,18 +67,49 @@ export default function StatsSection() {
             <motion.div
               key={index}
               variants={item}
-              whileHover={{ y: -4 }}
+              whileHover={{
+                y: -12,
+                scale: 1.05,
+                rotateY: 5,
+                rotateX: -5,
+                transition: { duration: 0.3, type: "spring", stiffness: 300 }
+              }}
+              style={{
+                transformStyle: "preserve-3d",
+                perspective: "1000px"
+              }}
               className="group relative text-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-6 md:p-7
                          shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
             >
               {/* viền phát sáng rất nhẹ khi hover */}
-              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                               ring-1 ring-transparent [background:radial-gradient(1200px_circle_at_var(--x,50%)_var(--y,50%),rgba(255,255,255,0.12),transparent_40%)]" />
+              <motion.span
+                className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                               ring-1 ring-transparent [background:radial-gradient(1200px_circle_at_var(--x,50%)_var(--y,50%),rgba(255,255,255,0.12),transparent_40%)]"
+                whileHover={{ scale: 1.1 }}
+              />
+
+              {/* Rotating glow effect */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30"
+                style={{
+                  background: "linear-gradient(90deg, #ef4444, #f59e0b, #a855f7, #ef4444)",
+                  filter: "blur(20px)",
+                  zIndex: -1
+                }}
+                animate={{
+                  rotate: [0, 360]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
               {/* Icon nền gradient đồng bộ CTA */}
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4
-                              bg-gradient-to-br from-red-600 to-yellow-500 text-white shadow-lg">
+              <motion.div
+                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4
+                              bg-gradient-to-br from-red-600 to-yellow-500 text-white shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
                 <stat.icon className="h-8 w-8" />
-              </div>
+              </motion.div>
 
               <div className="text-3xl font-extrabold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] mb-1">
                 <CountUp
@@ -96,6 +136,16 @@ export default function StatsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Parallax floating orbs */}
+        <motion.div
+          style={{ y, rotate }}
+          className="absolute -top-10 left-20 w-40 h-40 bg-red-500/10 rounded-full blur-3xl pointer-events-none"
+        />
+        <motion.div
+          style={{ y: useTransform(scrollYProgress, [0, 1], [-30, 30]) }}
+          className="absolute -bottom-10 right-20 w-48 h-48 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"
+        />
       </motion.div>
     </section>
   );

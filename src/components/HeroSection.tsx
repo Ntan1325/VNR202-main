@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import ParticleEffect from "../pages/ParticleEffect";
 import FloatingElements from "../pages/FloatingElements";
+import ThreeBackground from "./ThreeBackground";
 
 const IMAGES = [
   "https://nguonluc.com.vn/uploads/images/blog/huyenvan/2022/09/02/nlntv-tuyen-ngon-dl-1662080057.jpg",
@@ -19,6 +20,21 @@ export default function HeroSection() {
   const [idx, setIdx] = useState(0);
   const [loaded, setLoaded] = useState<boolean[]>(() => IMAGES.map(() => false));
   const timerRef = useRef<number | null>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothMouseX = useSpring(mouseX, { stiffness: 100, damping: 30 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 100, damping: 30 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set((e.clientX / window.innerWidth - 0.5) * 20);
+      mouseY.set((e.clientY / window.innerHeight - 0.5) * 20);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   // Preload images
   useEffect(() => {
@@ -102,8 +118,9 @@ export default function HeroSection() {
         </AnimatePresence>
       </div>
 
-      {/* Layer hiệu ứng sẵn có */}
+      {/* Layer hiệu ứng 3D & Parallax */}
       <div className="absolute inset-0">
+        <ThreeBackground />
         <ParticleEffect />
         <FloatingElements />
       </div>
@@ -111,6 +128,10 @@ export default function HeroSection() {
       {/* Nội dung */}
       <motion.div
         className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        style={{
+          x: smoothMouseX,
+          y: smoothMouseY
+        }}
         layout={false}
       >
         {/* Chip khẩu hiệu + cờ VN */}
@@ -153,7 +174,12 @@ export default function HeroSection() {
               <motion.span
                 key={`${word}-${index}`}
                 variants={wordVariants}
-                className="inline-block mr-3 bg-gradient-to-r from-white via-blue-100 to-yellow-100 bg-clip-text text-transparent will-change-transform"
+                whileHover={{
+                  scale: 1.1,
+                  rotateZ: [-2, 2, -2],
+                  transition: { duration: 0.3 }
+                }}
+                className="inline-block mr-3 bg-gradient-to-r from-white via-blue-100 to-yellow-100 bg-clip-text text-transparent will-change-transform cursor-default"
               >
                 {word}
               </motion.span>

@@ -149,6 +149,9 @@ export default {
           '-webkit-box-orient': 'vertical',
           overflow: 'hidden',
         },
+        '.bg-gradient-radial': {
+          'background-image': 'radial-gradient(circle, var(--tw-gradient-stops))',
+        },
       }
       addUtilities(newUtilities)
     }

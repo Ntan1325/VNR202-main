@@ -1,13 +1,24 @@
 // components/ChaptersSection.tsx
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import chaptersData from "../data/chapters.json";
+import { useRef } from "react";
+import ParallaxSection from "./ParallaxSection";
 
 export default function ChaptersSection() {
   const { t, i18n } = useTranslation();
   const isVietnamese = i18n.language === "vi";
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   const container = {
     hidden: { opacity: 0, y: 20 },
@@ -19,7 +30,7 @@ export default function ChaptersSection() {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section ref={sectionRef} className="relative py-20 overflow-hidden">
       {/* Nền đồng bộ Hero/Header: gradient đỏ→tím + vignette + light sweep */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-800/40 via-purple-900/50 to-fuchsia-900/60" />
       <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_200px_rgba(0,0,0,0.55)]" />
@@ -50,20 +61,42 @@ export default function ChaptersSection() {
         </motion.div>
 
         {/* Lưới chương */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div style={{ opacity }} className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {chaptersData.map((chapter, index) => (
             <motion.article
               key={chapter.id}
-              initial={{ opacity: 0, y: 50, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 50, scale: 0.97, rotateX: -15 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: 0.06 + index * 0.06 }}
-              whileHover={{ y: -8 }}
+              transition={{ duration: 0.5, delay: 0.08 + index * 0.1, type: "spring", stiffness: 100 }}
+              whileHover={{
+                y: -12,
+                scale: 1.02,
+                rotateY: 2,
+                rotateX: -2,
+                transition: { duration: 0.3 }
+              }}
+              style={{
+                transformStyle: "preserve-3d",
+                perspective: "1000px"
+              }}
               className="group relative overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md shadow-[0_15px_45px_rgba(0,0,0,0.28)]"
             >
               {/* Accent gradient khi hover */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                              bg-gradient-to-tr from-red-500/15 via-yellow-500/10 to-purple-500/15" />
+              <motion.div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                              bg-gradient-to-tr from-red-500/20 via-yellow-500/15 to-purple-500/20"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.4 }}
+              />
+
+              {/* Shine effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "200%" }}
+                transition={{ duration: 0.8 }}
+              />
 
               {/* Ảnh bìa */}
               <div className="relative h-56 overflow-hidden">
@@ -119,7 +152,17 @@ export default function ChaptersSection() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Parallax floating elements */}
+        <motion.div
+          style={{ y: y1 }}
+          className="absolute top-20 left-10 w-32 h-32 bg-red-500/10 rounded-full blur-3xl pointer-events-none"
+        />
+        <motion.div
+          style={{ y: y2 }}
+          className="absolute bottom-20 right-10 w-40 h-40 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"
+        />
       </motion.div>
     </section>
   );

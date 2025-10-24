@@ -1,14 +1,23 @@
 // components/ArticlesSection.tsx
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import articlesData from "../data/articles.json";
+import { useRef } from "react";
 
 export default function ArticlesSection() {
   const { t, i18n } = useTranslation();
   const isVietnamese = i18n.language === "vi";
   const latestArticles = articlesData.slice(0, 3);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const rotate = useTransform(scrollYProgress, [0, 1], [-10, 10]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
 
   const container = {
     hidden: { opacity: 0, y: 20 },
@@ -20,7 +29,7 @@ export default function ArticlesSection() {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section ref={sectionRef} className="relative py-20 overflow-hidden">
       {/* Nền đồng bộ Hero/Header: gradient đỏ→tím + vignette + light sweep */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-800/40 via-purple-900/50 to-fuchsia-900/60" />
       <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_200px_rgba(0,0,0,0.55)]" />
@@ -49,20 +58,49 @@ export default function ArticlesSection() {
         </motion.div>
 
         {/* Lưới bài viết */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div style={{ scale }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {latestArticles.map((article, index) => (
             <motion.article
               key={article.id}
-              initial={{ opacity: 0, y: 50, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: -15 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: 0.06 + index * 0.06 }}
-              whileHover={{ y: -8 }}
+              transition={{ duration: 0.6, delay: 0.1 + index * 0.15, type: "spring", stiffness: 80 }}
+              whileHover={{
+                y: -16,
+                scale: 1.05,
+                rotateY: 5,
+                rotateX: -5,
+                z: 50,
+                transition: { duration: 0.3 }
+              }}
+              style={{
+                transformStyle: "preserve-3d",
+                perspective: "1000px"
+              }}
               className="group relative overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md shadow-[0_15px_45px_rgba(0,0,0,0.28)]"
             >
               {/* Accent gradient khi hover */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                              bg-gradient-to-tr from-red-500/15 via-yellow-500/10 to-purple-500/15" />
+              <motion.div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                              bg-gradient-to-tr from-red-500/25 via-yellow-500/20 to-purple-500/25"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ duration: 0.4 }}
+              />
+
+              {/* Animated border glow */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                style={{
+                  background: "linear-gradient(90deg, #ef4444, #f59e0b, #a855f7)",
+                  filter: "blur(10px)",
+                  zIndex: -1
+                }}
+                animate={{
+                  rotate: [0, 360]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
 
               {/* Ảnh bìa */}
               <div className="relative h-52 overflow-hidden">
@@ -117,7 +155,13 @@ export default function ArticlesSection() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Parallax decorative elements */}
+        <motion.div
+          style={{ rotate }}
+          className="absolute top-10 right-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"
+        />
       </motion.div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import TextareaAutosize from "react-textarea-autosize";
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,7 @@ import {
   Sparkles,
   Trash2,
 } from "lucide-react";
-import { callGeminiChat, type GeminiUsage } from "../lib/aiClient";
+import { sendMessageToGemini } from "../lib/aiClient";
 
 type ChatRole = "user" | "assistant";
 
@@ -24,10 +24,8 @@ interface ChatMessage {
   createdAt: number;
 }
 
-const MODEL_ID = "gemini-1.5-flash";
-
 const bubbleCommon =
-  "relative max-w-[85%] md:max-w-[70%] rounded-2xl px-4 py-3 shadow-lg border border-white/10 backdrop-blur-md";
+  "relative max-w-[85%] md:max-w-[70%] rounded-2xl px-4 py-3 shadow-lg border border-white/10 backdrop-blur-md bg-white text-gray-900";
 const gradientText =
   "text-revolutionary-600 dark:text-gold-400";
 
@@ -123,18 +121,50 @@ export default function Chat() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [usage, setUsage] = useState<GeminiUsage | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const scrollAnchorRef = useRef<HTMLDivElement | null>(null);
   const chatListRef = useRef<HTMLDivElement | null>(null);
 
-  const aiKey =
-    (import.meta.env.GEMINI_API_KEY as string | undefined) ??
-    (import.meta.env.VITE_GEMINI_API_KEY as string | undefined);
+  useEffect(() => {
+    if (!chatListRef.current) return;
+    if (messages.length === 0 && !isLoading) return;
 
-  const systemPrompt = useMemo(
-    () =>
-      i18n.language === "vi"
+    chatListRef.current.scrollTo({
+      top: chatListRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages, isLoading]);
+
+  const handleCopy = useCallback((message: ChatMessage) => {
+    navigator.clipboard.writeText(message.content).then(() => {
+      setCopiedId(message.id);
+      window.setTimeout(() => setCopiedId(null), 2000);
+    });
+  }, []);
+
+  const handleClear = useCallback(() => {
+    setMessages([]);
+    setError(null);
+  }, []);
+
+  const handleSubmit = useCallback(async () => {
+    const trimmed = input.trim();
+    if (!trimmed || isLoading) return;
+
+    const userMessage: ChatMessage = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: trimmed,
+      createdAt: Date.now(),
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const systemPrompt = i18n.language === "vi"
         ? `Bạn là trợ lý học tập chuyên về môn Lịch sử Đảng Cộng sản Việt Nam (VNR202). Hãy giải thích, tóm tắt và hỗ trợ người học ôn tập từng chương một cách dễ hiểu, có ví dụ và câu hỏi luyện tập.
 
 CƠ SỞ DUY NHẤT: các tài liệu/giáo trình đã nạp cho hệ thống về Lịch sử Đảng Cộng sản Việt Nam.
@@ -158,83 +188,26 @@ ANSWERING RULES:
 4) If a question falls outside the course scope or seeks opinions not in the text, POLITELY DECLINE in the current UI language, e.g.: "Sorry, that's outside the scope of VNR202, so I can't answer. Please reframe within the chapter's content."
 5) If the text doesn't contain the requested info, say so explicitly instead of guessing.
 6) Maintain neutrality and respect; encourage learning; avoid inflammatory language.
-7) Always provide easy-to-understand answers with specific examples and review questions for self-testing.`,
-    [i18n.language]
-  );
+7) Always provide easy-to-understand answers with specific examples and review questions for self-testing.`;
 
-  useEffect(() => {
-    if (!chatListRef.current) return;
-    if (messages.length === 0 && !isLoading) return;
-
-    chatListRef.current.scrollTo({
-      top: chatListRef.current.scrollHeight,
-      behavior: "smooth",
-    });
-  }, [messages, isLoading]);
-
-  const handleCopy = useCallback((message: ChatMessage) => {
-    navigator.clipboard.writeText(message.content).then(() => {
-      setCopiedId(message.id);
-      window.setTimeout(() => setCopiedId(null), 2000);
-    });
-  }, []);
-
-  const handleClear = useCallback(() => {
-    setMessages([]);
-    setUsage(null);
-    setError(null);
-  }, []);
-
-  const handleSubmit = useCallback(async () => {
-    const trimmed = input.trim();
-    if (!trimmed || isLoading) return;
-
-    const userMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: "user",
-      content: trimmed,
-      createdAt: Date.now(),
-    };
-
-    const nextMessages = [...messages, userMessage];
-    setMessages(nextMessages);
-    setInput("");
-    setIsLoading(true);
-    setError(null);
-
-    const chatPayload = nextMessages.map(({ role, content }) => ({
-      role,
-      content,
-    }));
-
-    try {
-      const response = await callGeminiChat({
-        apiKey: aiKey,
-        model: MODEL_ID,
-        messages: [{ role: "system", content: systemPrompt }, ...chatPayload],
-      });
-
-      if (!response) {
-        setError(t("chat.error"));
-        return;
-      }
+      const fullPrompt = `${systemPrompt}\n\nCâu hỏi của người dùng: ${trimmed}`;
+      const response = await sendMessageToGemini(fullPrompt);
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
         role: "assistant",
-        content: response.content,
+        content: response,
         createdAt: Date.now(),
       };
 
-      setMessages((prev) => [...prev, assistantMessage]);
-      setUsage(response.usage ?? null);
+      setMessages(prev => [...prev, assistantMessage]);
     } catch (err) {
       console.error(err);
       setError(t("chat.error"));
     } finally {
       setIsLoading(false);
     }
-  }, [aiKey, input, isLoading, messages, systemPrompt, t]);
+  }, [input, isLoading, i18n.language, t]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {

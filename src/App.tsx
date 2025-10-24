@@ -59,7 +59,7 @@ function AppContent() {
 
       <div
         className={[
-          "flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white",
+          "flex flex-col min-h-screen bg-parchment-100 dark:bg-brown-900 text-deeptext-900 dark:text-parchment-50",
           isChatRoute ? "overflow-hidden" : "",
         ].join(" ")}
       >

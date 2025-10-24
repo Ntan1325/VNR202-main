@@ -46,10 +46,10 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
       positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i3 + 2] = radius * Math.cos(phi) - 30;
 
-      const isGold = Math.random() > 0.5;
-      colors[i3] = isGold ? 1 : 0.9;
-      colors[i3 + 1] = isGold ? 0.84 : 0.1;
-      colors[i3 + 2] = isGold ? 0.0 : 0.1;
+      const isGold = Math.random() > 0.6;
+      colors[i3] = isGold ? 0.831 : 0.545;
+      colors[i3 + 1] = isGold ? 0.686 : 0;
+      colors[i3 + 2] = isGold ? 0.216 : 0;
 
       sizes[i] = Math.random() * 2 + 0.5;
     }
@@ -99,11 +99,11 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
 
     const starGeometry = new THREE.ExtrudeGeometry(starShape, extrudeSettings);
     const starMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffd700,
-      emissive: 0xffaa00,
+      color: 0xD4AF37,
+      emissive: 0xD4AF37,
       emissiveIntensity: 0,
-      metalness: 0.8,
-      roughness: 0.2
+      metalness: 0.9,
+      roughness: 0.1
     });
 
     const star = new THREE.Mesh(starGeometry, starMaterial);
@@ -115,8 +115,8 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
     const sickleGeometry = new THREE.TorusGeometry(2, 0.3, 8, 32, Math.PI);
 
     const metalMaterial = new THREE.MeshStandardMaterial({
-      color: 0xff0000,
-      emissive: 0xff0000,
+      color: 0x8B0000,
+      emissive: 0x8B0000,
       emissiveIntensity: 0,
       metalness: 0.9,
       roughness: 0.1
@@ -138,11 +138,11 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
     emblemGroup.position.z = -10;
     scene.add(emblemGroup);
 
-    const pointLight1 = new THREE.PointLight(0xff0000, 0, 100);
+    const pointLight1 = new THREE.PointLight(0x8B0000, 0, 100);
     pointLight1.position.set(20, 20, 20);
     scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0xffd700, 0, 100);
+    const pointLight2 = new THREE.PointLight(0xD4AF37, 0, 100);
     pointLight2.position.set(-20, -20, 20);
     scene.add(pointLight2);
 
@@ -157,7 +157,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
     for (let i = 0; i < 12; i++) {
       const rayGeometry = new THREE.PlaneGeometry(0.3, 100);
       const rayMaterial = new THREE.MeshBasicMaterial({
-        color: 0xffd700,
+        color: 0xD4AF37,
         transparent: true,
         opacity: 0,
         blending: THREE.AdditiveBlending,
@@ -172,7 +172,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
 
     const shockwaveGeometry = new THREE.RingGeometry(0.1, 1, 32);
     const shockwaveMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffd700,
+      color: 0xD4AF37,
       transparent: true,
       opacity: 0,
       side: THREE.DoubleSide,
@@ -327,10 +327,10 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   transition={{ duration: 1, type: "spring", stiffness: 100 }}
                   className="mb-8"
                 >
-                  <h1 className="text-8xl font-black bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]"
+                  <h1 className="text-8xl font-black bg-gradient-to-r from-revolutionary-600 via-gold-500 to-revolutionary-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(212,175,55,0.5)]"
                       style={{
-                        textShadow: '0 0 40px rgba(255,0,0,0.8), 0 0 80px rgba(255,215,0,0.6)',
-                        WebkitTextStroke: '2px rgba(255,215,0,0.3)'
+                        textShadow: '0 0 40px rgba(139,0,0,0.8), 0 0 80px rgba(212,175,55,0.6)',
+                        WebkitTextStroke: '2px rgba(212,175,55,0.3)'
                       }}>
                     VNR202
                   </h1>
@@ -343,7 +343,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   className="relative"
                 >
                   <motion.div
-                    className="absolute -inset-4 bg-gradient-to-r from-red-600/20 to-yellow-500/20 blur-3xl"
+                    className="absolute -inset-4 bg-gradient-to-r from-revolutionary-600/20 to-gold-500/20 blur-3xl"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.3, 0.6, 0.3]
@@ -351,7 +351,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
 
-                  <h2 className="relative text-4xl md:text-6xl font-bold text-white drop-shadow-[0_0_20px_rgba(255,215,0,0.4)]">
+                  <h2 className="relative text-4xl md:text-6xl font-bold text-parchment-50 drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]">
                     Lịch Sử Đảng Cộng Sản Việt Nam
                   </h2>
                 </motion.div>
@@ -360,7 +360,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 1.5 }}
-                  className="mt-6 text-xl text-yellow-200/80 font-medium"
+                  className="mt-6 text-xl text-gold-200/80 font-medium"
                 >
                   Khơi dậy niềm tự hào – Tiếp nối truyền thống cách mạng
                 </motion.p>
@@ -375,7 +375,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                     onClick={onComplete}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-12 py-4 bg-gradient-to-r from-red-600 to-yellow-500 rounded-full text-white text-lg font-bold shadow-[0_0_30px_rgba(255,215,0,0.5)] hover:shadow-[0_0_50px_rgba(255,215,0,0.8)] transition-all duration-300"
+                    className="px-12 py-4 bg-gradient-to-r from-revolutionary-600 to-gold-500 rounded-full text-parchment-50 text-lg font-bold shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:shadow-[0_0_50px_rgba(212,175,55,0.8)] transition-all duration-300"
                   >
                     Bắt đầu khám phá
                   </motion.button>

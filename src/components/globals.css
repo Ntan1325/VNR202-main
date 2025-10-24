@@ -1,0 +1,51 @@
+/* ===== Footer Color Tokens (match tông hào hùng) ===== */
+:root {
+  /* Nền sáng nhưng có độ ấm tím/đỏ nhẹ để đồng điệu tổng thể */
+  --footer-bg: #fffafc; /* base light */
+  --footer-fg: rgba(28, 25, 23, 0.92); /* tiêu đề/chữ chính */
+  --footer-muted: rgba(28, 25, 23, 0.72); /* chữ thứ cấp */
+  --footer-card: rgba(255, 255, 255, 0.72); /* nền card kính mờ (light) */
+  --footer-border: rgba(28, 25, 23, 0.12); /* viền card/chip */
+  --footer-chip: rgba(255, 255, 255, 0.75); /* chip khẩu hiệu */
+
+  /* Accent gradient đồng bộ: đỏ → vàng → tím */
+  --footer-accent-start: #ef4444; /* red-500 */
+  --footer-accent-mid: #eab308; /* amber-500 */
+  --footer-accent-end: #a855f7; /* purple-500 */
+}
+
+/* Dark theme: chuyển sang kính mờ tối + chữ trắng vừa phải */
+.dark {
+  --footer-bg: #10091a; /* base tối tím-đỏ */
+  --footer-fg: rgba(255, 255, 255, 0.92);
+  --footer-muted: rgba(255, 255, 255, 0.82);
+  --footer-card: rgba(255, 255, 255, 0.06); /* glass */
+  --footer-border: rgba(255, 255, 255, 0.15);
+  --footer-chip: rgba(255, 255, 255, 0.1);
+
+  /* Accent giữ nguyên để đồng bộ với phần khác */
+  --footer-accent-start: #ef4444;
+  --footer-accent-mid: #eab308;
+  --footer-accent-end: #a855f7;
+}
+
+/* (tuỳ chọn) nếu muốn áp một preset “heroic” cho cả light lẫn dark: */
+/* body.heroic { --footer-bg:#0b0616; --footer-fg:rgba(255,255,255,.92); --footer-muted:rgba(255,255,255,.82); --footer-card:rgba(255,255,255,.06); --footer-border:rgba(255,255,255,.15); --footer-chip:rgba(255,255,255,.10); } */
+
+.chat-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.chat-scroll {
+  scrollbar-width: none; /* Firefox */
+}
+
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

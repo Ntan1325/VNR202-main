@@ -1,0 +1,226 @@
+{
+    "vi": {
+        "translation": {
+            "navigation": {
+                "home": "Trang Chủ",
+                "chapters": "Chương",
+                "quiz": "Quiz",
+                "feedback": "Phản Hồi",
+                "chat": "Trò chuyện AI",
+                "about": "Giới thiệu",
+                "language": "Ngôn ngữ"
+            },
+            "home": {
+                "hero": {
+                    "title": "Độc lập dân tộc & Chủ nghĩa xã hội",
+                    "subtitle": "Khám phá tư tưởng Hồ Chí Minh qua hành trình học tập hiện đại",
+                    "cta": "Bắt đầu học tập"
+                },
+                "chapters": {
+                    "title": "Khám phá các Chương",
+                    "subtitle": "Hành trình tìm hiểu tư tưởng Hồ Chí Minh sâu sắc",
+                    "explore": "Khám phá"
+                },
+                "articles": {
+                    "title": "Bài viết mới nhất",
+                    "subtitle": "Cập nhật những nghiên cứu và phân tích mới nhất",
+                    "readMore": "Đọc thêm",
+                    "by": "bởi",
+                    "readTime": "phút đọc"
+                },
+                "stats": {
+                    "title": "Thống kê học tập",
+                    "articles": "Bài viết triết học",
+                    "languages": "Ngôn ngữ hỗ trợ",
+                    "questions": "Câu hỏi quiz",
+                    "chapters": "Chương học"
+                }
+            },
+            "quiz": {
+                "title": "Bài kiểm tra",
+                "start": "Bắt đầu làm bài",
+                "question": "Câu hỏi",
+                "of": "trên",
+                "pre": "Trước",
+                "next": "Tiếp theo",
+                "previous": "Trước đó",
+                "submit": "Nộp bài",
+                "score": "Điểm số",
+                "correct": "Đúng",
+                "incorrect": "Sai",
+                "explanation": "Giải thích",
+                "tryAgain": "Làm lại",
+                "tryagain": "Làm lại",
+                "backToChapters": "Về danh sách chương",
+                "backtochaper": "Về danh sách chương"
+            },
+            "article": {
+                "by": "bởi",
+                "readTime": "phút đọc",
+                "readProgress": "Tiến độ đọc",
+                "readAloud": "Đọc to",
+                "stopReading": "Dừng đọc",
+                "backToChapter": "Về chương"
+            },
+            "search": {
+                "placeholder": "Tìm kiếm bài viết...",
+                "filter": "Lọc theo",
+                "all": "Tất cả"
+            },
+            "theme": {
+                "light": "Sáng",
+                "dark": "Tối"
+            },
+            "footer": {
+                "copyright": "© 2024 Ho Chi Minh Ideology. Tất cả quyền được bảo lưu.",
+                "contact": "Liên hệ",
+                "privacy": "Chính sách bảo mật",
+                "terms": "Điều khoản sử dụng",
+                "links": "Liên kết",
+                "support": "Hỗ trợ"
+            },
+            "chat": {
+                "title": "Trợ lý Hồ Chí Minh AI",
+                "subtitle": "Đặt câu hỏi về tư tưởng Hồ Chí Minh và nhận phản hồi tức thì.",
+                "inputPlaceholder": "Nhập câu hỏi của bạn...",
+                "send": "Gửi",
+                "clear": "Xoá hội thoại",
+                "emptyState": "Chưa có cuộc trò chuyện nào. Hãy bắt đầu bằng một câu hỏi!",
+                "aiThinking": "Đang soạn câu trả lời...",
+                "error": "Không thể kết nối tới máy chủ AI. Vui lòng thử lại sau.",
+                "status": {
+                    "model": "Mô hình",
+                    "tokens": "Token sử dụng",
+                    "prompt": "Prompt",
+                    "completion": "Hoàn thành",
+                    "total": "Tổng"
+                },
+                "buttons": {
+                    "copy": "Sao chép",
+                    "copied": "Đã sao chép"
+                }
+            },
+            "about": {
+                "aiTraining": {
+                    "title": "Cách chúng tôi huấn luyện AI",
+                    "description": "Chatbot AI của chúng tôi được huấn luyện bằng các prompts và tài liệu cụ thể của dự án để đảm bảo câu trả lời chính xác và đúng chủ đề.",
+                    "codeExample": "/train \"Chỉ trả lời các câu hỏi liên quan đến dự án của chúng tôi\"\n/context add syllabus_data.pdf\n/context add quiz_questions.json\n\n--- TRAINING RULES ---\nBạn là Trợ lý học thuật cho học phần HCM202 (Tư tưởng Hồ Chí Minh).\nCƠ SỞ DUY NHẤT: các tài liệu/giáo trình đã nạp cho hệ thống (hiện có “Chương III: Tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội”).\nYÊU CẦU TRẢ LỜI:\n1) Chỉ sử dụng thông tin có trong giáo trình; không suy diễn ngoài tài liệu, không bình luận thời sự/chính trị đương thời.\n2) Trình bày ngắn gọn, chính xác theo bối cảnh lịch sử: nêu khái niệm → luận điểm chính → dẫn chứng/niên đại/ trích dẫn có trong giáo trình.\n3) Khi trích nguyên văn, đặt trong ngoặc kép và ghi nguồn theo chương/mục (ví dụ: “Không có gì quý hơn độc lập, tự do” – Chương III).\n4) Nếu câu hỏi nằm ngoài phạm vi môn học hoặc đòi quan điểm/đánh giá không có trong giáo trình, TỪ CHỐI LỊCH SỰ bằng ngôn ngữ hiện tại, ví dụ: “Xin lỗi, câu hỏi này vượt phạm vi giáo trình HCM202/Chương hiện có nên mình không thể trả lời. Bạn có thể hỏi lại theo nội dung của chương nhé?”\n5) Nếu thông tin không có/không rõ trong giáo trình, nói thẳng “không thấy trong giáo trình” thay vì suy đoán.\n6) Giữ thái độ trung lập, tôn trọng; khuyến khích tinh thần tự học; tránh ngôn từ kích động.\n\nYou are the academic TA for course HCM202 (Ho Chi Minh Thought).\nSOLE GROUNDING: only the course materials loaded into the system (currently “Chapter III: Ho Chi Minh’s thought on national independence and socialism”).\nANSWERING RULES:\n1) Use information strictly from the course text; no speculation beyond it; no commentary on current politics/events.\n2) Be concise and historically accurate: define → key theses → evidence/dates/quotes present in the text.\n3) For verbatim quotes, use quotation marks and cite chapter/section (e.g., “Nothing is more precious than independence and freedom” – Chapter III).\n4) If a question falls outside the course scope or seeks opinions not in the text, POLITELY DECLINE in the current UI language, e.g.: “Sorry, that’s outside the scope of HCM202/the loaded chapter, so I can’t answer. Please reframe within the chapter’s content.”\n5) If the text doesn’t contain the requested info, say so explicitly instead of guessing.\n6) Maintain neutrality and respect; encourage learning; avoid inflammatory language.",
+                    "note": "Bằng cách cung cấp prompts và tài liệu, chúng tôi hướng dẫn AI tập trung và hữu ích hơn. Tuy nhiên, câu trả lời do AI tạo ra có thể chưa hoàn toàn chính xác và cần được kiểm chứng.",
+                    "qrTitle": "Quét để truy cập website"
+                }
+            }
+        }
+    },
+    "en": {
+        "translation": {
+            "navigation": {
+                "home": "Home",
+                "chapters": "Chapters",
+                "quiz": "Quiz",
+                "feedback": "Feedback",
+                "chat": "AI Chat",
+                "about": "About Us",
+                "language": "Language"
+            },
+            "home": {
+                "hero": {
+                    "title": "National Independence & Socialism",
+                    "subtitle": "Explore Ho Chi Minh's thought through modern learning journey",
+                    "cta": "Start Learning"
+                },
+                "chapters": {
+                    "title": "Explore Chapters",
+                    "subtitle": "Journey to discover Hồ Chí Minh philosophical thoughts",
+                    "explore": "Explore"
+                },
+                "articles": {
+                    "title": "Latest Articles",
+                    "subtitle": "Stay updated with the latest research and analysis",
+                    "readMore": "Read More",
+                    "by": "by",
+                    "readTime": "min read"
+                },
+                "stats": {
+                    "title": "Learning Statistics",
+                    "articles": "Philosophy Articles",
+                    "languages": "Languages Supported",
+                    "questions": "Quiz Questions",
+                    "chapters": "Learning Chapters"
+                }
+            },
+            "quiz": {
+                "title": "Quiz Test",
+                "start": "Start Quiz",
+                "question": "Question",
+                "of": "of",
+                "pre": "Previous",
+                "next": "Next",
+                "previous": "Previous",
+                "submit": "Submit",
+                "score": "Score",
+                "correct": "Correct",
+                "incorrect": "Incorrect",
+                "explanation": "Explanation",
+                "tryAgain": "Try Again",
+                "tryagain": "Try Again",
+                "backToChapters": "Back to Chapters",
+                "backtochaper": "Back to Chapters"
+            },
+            "article": {
+                "by": "by",
+                "readTime": "min read",
+                "readProgress": "Reading Progress",
+                "readAloud": "Read Aloud",
+                "stopReading": "Stop Reading",
+                "backToChapter": "Back to Chapter"
+            },
+            "search": {
+                "placeholder": "Search articles...",
+                "filter": "Filter by",
+                "all": "All"
+            },
+            "theme": {
+                "light": "Light",
+                "dark": "Dark"
+            },
+            "footer": {
+                "contact": "Contact",
+                "privacy": "Privacy Policy",
+                "terms": "Terms of Service",
+                "copyright": "© 2024 Ho Chi Minh Ideology. All rights reserved.",
+                "links": "Links",
+                "support": "Support the project"
+            },
+            "chat": {
+                "title": "Ho Chi Minh AI Assistant",
+                "subtitle": "Ask about Ho Chi Minh's thought and get instant answers.",
+                "inputPlaceholder": "Type your question...",
+                "send": "Send",
+                "clear": "Clear conversation",
+                "emptyState": "No conversation yet. Start with a question!",
+                "aiThinking": "Crafting a response...",
+                "error": "Unable to reach the AI server. Please try again later.",
+                "status": {
+                    "model": "Model",
+                    "tokens": "Token usage",
+                    "prompt": "Prompt",
+                    "completion": "Completion",
+                    "total": "Total"
+                },
+                "buttons": {
+                    "copy": "Copy",
+                    "copied": "Copied"
+                }
+            },
+            "about": {
+                "aiTraining": {
+                    "title": "How We Train Our AI",
+                    "description": "Our AI chatbot is trained using project-specific prompts and documents to ensure accurate, on-topic answers.",
+                    "codeExample": "/train \"Answer only questions related to our project\"\n/context add syllabus_data.pdf\n/context add quiz_questions.json",
+                    "note": "By feeding prompts and documents, we guide AI to stay focused and helpful.",
+                    "qrTitle": "Scan to visit our website"
+                }
+            }
+        }
+    }
+}

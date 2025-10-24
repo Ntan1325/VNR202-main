@@ -1,0 +1,87 @@
+[
+  {
+  "id": 1,
+  "slug": "chuong-1-nen-tang-ly-luan-thuc-tien",
+  "title": "Chương 1: Nền tảng Lý luận và Thực tiễn – Mối liên hệ Biện chứng giữa Tư tưởng Hồ Chí Minh và Lịch sử Đảng",
+  "titleEn": "Chapter 1: Theoretical and Practical Foundations – The Dialectical Link between Ho Chi Minh's Thought and the Party's History",
+  "description": "Phân tích cơ sở lý luận và thực tiễn, làm rõ mối liên hệ biện chứng giữa tư tưởng Hồ Chí Minh với quá trình hình thành và phát triển của Đảng Cộng sản Việt Nam.",
+  "descriptionEn": "Analyze the theoretical and practical foundations, clarifying the dialectical relationship between Ho Chi Minh's thought and the historical development of the Communist Party of Vietnam.",
+  "thumbnail": "https://cloudcdnvod.tek4tv.vn/Mam/attach/upload/02092023012943/374eb04b-d7a5-4d10-8b3a-75cd7709fe36-43.jpg",
+  "articles": 3,
+  "quizzes": 2,
+  "readTime": "2 giờ",
+  "readTimeEn": "2 hours"
+    }
+    ,
+  {
+  "id": 2,
+  "slug": "chuong-2-hinh-thanh-va-phat-trien-dang-cong-san-viet-nam",
+  "title": "Chương 2: Hình thành và Phát triển của Đảng Cộng sản Việt Nam – Từ Bối cảnh Lịch sử đến Thắng lợi Cách mạng Tháng Tám 1945",
+  "titleEn": "Chapter 2: Formation and Growth of the Communist Party of Vietnam – From Historical Context to the Victory of the August Revolution 1945",
+  "description": "Trình bày bối cảnh lịch sử, quá trình ra đời, lãnh đạo đấu tranh và giành thắng lợi của Đảng Cộng sản Việt Nam từ năm 1930 đến Cách mạng Tháng Tám 1945.",
+  "descriptionEn": "Explores the historical context, the founding, leadership in struggles, and ultimate victory of the Communist Party of Vietnam from 1930 to the August Revolution of 1945.",
+  "thumbnail": "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/18/1230158/2-VHTT-1030352.jpg",
+  "articles": 4,
+  "quizzes": 2,
+  "readTime": "3 giờ",
+  "readTimeEn": "3 hours"
+}
+,
+  {
+  "id": 3,
+  "slug": "chuong-6-doc-lap-dan-toc",
+  "title": "Chương 3: Tư tưởng Hồ Chí Minh về Độc lập Dân tộc",
+  "titleEn": "Chapter 3: Ho Chi Minh's Thought on National Independence",
+  "description": "Giới thiệu quan điểm của Hồ Chí Minh về độc lập dân tộc và mối quan hệ chặt chẽ giữa độc lập dân tộc với chủ nghĩa xã hội.",
+  "descriptionEn": "Introduction to Ho Chi Minh's views on national independence and the close relationship between independence and socialism.",
+  "thumbnail": "https://ussh.vnu.edu.vn/uploads/ussh/nckh/2015_05/tu-tuong-ho-chi-minh-ve-van-de-dan-toc-may-van-de-ban-luan18052015100122.gif",
+  "articles": 4,
+  "quizzes": 2,
+  "readTime": "3 giờ",
+  "readTimeEn": "3 hours"
+}
+
+,
+{
+  "id": 4,
+  "slug": "chuong-7-chu-nghia-xa-hoi-va-xay-dung",
+  "title": "Chương 4: Tư tưởng Hồ Chí Minh về Chủ nghĩa Xã hội và Xây dựng Chủ nghĩa Xã hội ở Việt Nam",
+  "titleEn": "Chapter 4: Ho Chi Minh's Thought on Socialism and Building Socialism in Vietnam",
+  "description": "Khái quát quan điểm Hồ Chí Minh về chủ nghĩa xã hội và con đường xây dựng xã hội mới ở Việt Nam.",
+  "descriptionEn": "Overview of Ho Chi Minh’s views on socialism and the path to building a new society in Vietnam.",
+  "thumbnail": "https://lyluanchinhtri-statics.melisoft.vn/2024/06/05/1.chu_nghia_xa_hoi_1717582264175.jpg",
+  "articles": 4,
+  "quizzes": 2,
+  "readTime": "3 giờ",
+  "readTimeEn": "3 hours"
+},
+{
+  "id": 5,
+  "slug": "chuong-5-doc-lap-va-chu-nghia-xa-hoi",
+  "title": "Chương 5: Tư tưởng Hồ Chí Minh về mối quan hệ biện chứng giữa Độc lập Dân tộc và Chủ nghĩa Xã hội",
+  "titleEn": "Chapter 5: Ho Chi Minh’s Thought on the Dialectical Relationship Between National Independence and Socialism",
+  "description": "Khám phá cách Hồ Chí Minh liên kết chặt chẽ giữa mục tiêu độc lập dân tộc và xây dựng chủ nghĩa xã hội trong cách mạng Việt Nam.",
+  "descriptionEn": "Explore how Ho Chi Minh tightly linked the goal of national independence with the building of socialism in the Vietnamese revolution.",
+  "thumbnail": "https://iluatsu.com/wp-content/uploads/2020/03/tu-tuong-ho-chi-minh-moi-quan-he-bien-chung-giua-van-de-giai-cap-va-dan-toc-750x429-2.jpg",
+  "articles": 4,
+  "quizzes": 2,
+  "readTime": "3 giờ",
+  "readTimeEn": "3 hours"
+},
+{
+  "id": 6,
+  "slug": "chuong-8-van-dung-doc-lap-dan-toc-giong-cnxh-hien-nay",
+  "title": "Chương 6: Vận dụng Tư tưởng Hồ Chí Minh về Độc lập Dân tộc gắn liền với CNXH trong sự nghiệp cách mạng Việt Nam hiện nay",
+  "titleEn": "Chapter 6: Applying Ho Chi Minh’s Thought on National Independence Linked with Socialism in Vietnam’s Current Revolutionary Cause",
+  "description": "Trình bày cách vận dụng tư tưởng Hồ Chí Minh về gắn độc lập dân tộc với chủ nghĩa xã hội vào con đường phát triển hiện nay của đất nước.",
+  "descriptionEn": "Presents how to apply Ho Chi Minh’s thought of linking national independence with socialism in Vietnam’s present development path.",
+  "thumbnail": "https://www.tapchicongsan.org.vn/documents/20182/115688243/B%C3%A1c+Ho+v%E1%BB%9Bi+nhan+dan.jpg/36479dc9-8cea-4a4a-a42e-cba2e12fb81c?t=1624813014633",
+  "articles": 3,
+  "quizzes": 2,
+  "readTime": "3 giờ",
+  "readTimeEn": "3 hours"
+}
+
+
+  
+]

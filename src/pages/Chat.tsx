@@ -59,7 +59,7 @@ const MessageBubbleInner = ({
       <div
         className={`${bubbleCommon} ${
           isUser
-            ? "bg-revolutionary-600 text-parchment-50"
+            ? "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             : "bg-parchment-50/95 dark:bg-brown-800/95 text-deeptext-900 dark:text-parchment-100"
         }`}
       >
@@ -72,7 +72,7 @@ const MessageBubbleInner = ({
 
           <div className="flex-1 space-y-3">
             <div className={`prose prose-sm sm:prose-base max-w-none ${
-              isUser ? "prose-invert" : "prose-stone dark:prose-invert"
+              isUser ? "prose-stone dark:prose-invert" : "prose-stone dark:prose-invert"
             }`}>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {message.content}

@@ -16,72 +16,84 @@ export default function ThreeBackground() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
 
-    camera.position.z = 30;
+    camera.position.z = 40;
 
-    const geometries = [
-      new THREE.TorusGeometry(10, 3, 16, 100),
-      new THREE.OctahedronGeometry(8, 0),
-      new THREE.IcosahedronGeometry(7, 0),
-      new THREE.TetrahedronGeometry(9, 0),
-    ];
+    const createVietnameseFlag = (width: number, height: number) => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d')!;
 
-    const materials = [
-      new THREE.MeshPhongMaterial({
-        color: 0xff0000,
-        wireframe: true,
+      ctx.fillStyle = '#DA251D';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const starRadius = canvas.width * 0.25;
+
+      ctx.fillStyle = '#FFCD00';
+      ctx.beginPath();
+      for (let i = 0; i < 5; i++) {
+        const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+        const x = centerX + Math.cos(angle) * starRadius;
+        const y = centerY + Math.sin(angle) * starRadius;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+
+      const geometry = new THREE.PlaneGeometry(width, height, 32, 32);
+      const material = new THREE.MeshPhongMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
         transparent: true,
-        opacity: 0.15,
-        emissive: 0xff0000,
-        emissiveIntensity: 0.2
-      }),
-      new THREE.MeshPhongMaterial({
-        color: 0xffdd00,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.12,
-        emissive: 0xffdd00,
-        emissiveIntensity: 0.15
-      }),
-      new THREE.MeshPhongMaterial({
-        color: 0x0088ff,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.1,
-        emissive: 0x0088ff,
-        emissiveIntensity: 0.1
-      }),
-    ];
+        opacity: 0.9,
+        shininess: 30
+      });
 
-    const meshes: THREE.Mesh[] = [];
-    for (let i = 0; i < 8; i++) {
-      const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-      const material = materials[Math.floor(Math.random() * materials.length)];
-      const mesh = new THREE.Mesh(geometry, material);
+      return new THREE.Mesh(geometry, material);
+    };
 
-      mesh.position.x = (Math.random() - 0.5) * 50;
-      mesh.position.y = (Math.random() - 0.5) * 50;
-      mesh.position.z = (Math.random() - 0.5) * 30;
+    const flags: THREE.Mesh[] = [];
+    const flagCount = 5;
 
-      mesh.rotation.x = Math.random() * Math.PI;
-      mesh.rotation.y = Math.random() * Math.PI;
+    for (let i = 0; i < flagCount; i++) {
+      const flag = createVietnameseFlag(12, 8);
 
-      const scale = Math.random() * 0.5 + 0.5;
-      mesh.scale.set(scale, scale, scale);
+      flag.position.x = (Math.random() - 0.5) * 60;
+      flag.position.y = (Math.random() - 0.5) * 40;
+      flag.position.z = (Math.random() - 0.5) * 40 - 10;
 
-      scene.add(mesh);
-      meshes.push(mesh);
+      flag.rotation.y = Math.random() * Math.PI;
+
+      const scale = Math.random() * 0.4 + 0.6;
+      flag.scale.set(scale, scale, scale);
+
+      scene.add(flag);
+      flags.push(flag);
     }
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    const pointLight1 = new THREE.PointLight(0xff0000, 2, 100);
-    pointLight1.position.set(20, 20, 20);
-    scene.add(pointLight1);
+    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight1.position.set(10, 10, 10);
+    scene.add(directionalLight1);
 
-    const pointLight2 = new THREE.PointLight(0xffdd00, 2, 100);
-    pointLight2.position.set(-20, -20, 20);
-    scene.add(pointLight2);
+    const directionalLight2 = new THREE.DirectionalLight(0xD4AF37, 0.4);
+    directionalLight2.position.set(-10, -10, 10);
+    scene.add(directionalLight2);
+
+    const pointLight = new THREE.PointLight(0xDA251D, 1, 100);
+    pointLight.position.set(0, 0, 20);
+    scene.add(pointLight);
 
     const handleMouseMove = (event: MouseEvent) => {
       mouseRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -101,24 +113,37 @@ export default function ThreeBackground() {
     const animate = () => {
       frameId = requestAnimationFrame(animate);
 
-      meshes.forEach((mesh, index) => {
-        mesh.rotation.x += 0.002 + index * 0.0002;
-        mesh.rotation.y += 0.003 + index * 0.0003;
-        mesh.rotation.z += 0.001;
+      const time = Date.now() * 0.001;
 
-        mesh.position.y += Math.sin(Date.now() * 0.001 + index) * 0.01;
-        mesh.position.x += Math.cos(Date.now() * 0.0008 + index) * 0.01;
+      flags.forEach((flag, index) => {
+        const geometry = flag.geometry as THREE.PlaneGeometry;
+        const positions = geometry.attributes.position;
+
+        for (let i = 0; i < positions.count; i++) {
+          const x = positions.getX(i);
+          const y = positions.getY(i);
+
+          const waveX = Math.sin(x * 0.5 + time + index) * 0.3;
+          const waveY = Math.sin(y * 0.3 + time * 1.2 + index) * 0.2;
+          const wave = waveX + waveY;
+
+          positions.setZ(i, wave);
+        }
+
+        positions.needsUpdate = true;
+
+        flag.rotation.y += 0.001 + index * 0.0002;
+
+        flag.position.y += Math.sin(time * 0.5 + index) * 0.008;
+        flag.position.x += Math.cos(time * 0.3 + index) * 0.005;
       });
 
-      camera.position.x += (mouseRef.current.x * 5 - camera.position.x) * 0.02;
-      camera.position.y += (mouseRef.current.y * 5 - camera.position.y) * 0.02;
+      camera.position.x += (mouseRef.current.x * 3 - camera.position.x) * 0.02;
+      camera.position.y += (mouseRef.current.y * 3 - camera.position.y) * 0.02;
       camera.lookAt(scene.position);
 
-      pointLight1.position.x = Math.sin(Date.now() * 0.001) * 30;
-      pointLight1.position.y = Math.cos(Date.now() * 0.001) * 30;
-
-      pointLight2.position.x = Math.cos(Date.now() * 0.0015) * 30;
-      pointLight2.position.y = Math.sin(Date.now() * 0.0015) * 30;
+      pointLight.position.x = Math.sin(time * 0.5) * 20;
+      pointLight.position.y = Math.cos(time * 0.5) * 20;
 
       renderer.render(scene, camera);
     };
@@ -130,13 +155,18 @@ export default function ThreeBackground() {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(frameId);
 
-      meshes.forEach(mesh => {
-        mesh.geometry.dispose();
-        (mesh.material as THREE.Material).dispose();
+      flags.forEach(flag => {
+        flag.geometry.dispose();
+        if (flag.material instanceof THREE.Material) {
+          if (flag.material.map) {
+            flag.material.map.dispose();
+          }
+          flag.material.dispose();
+        }
       });
 
       renderer.dispose();
-      if (containerRef.current) {
+      if (containerRef.current && renderer.domElement.parentNode === containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }
     };

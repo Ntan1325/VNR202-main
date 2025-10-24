@@ -1,3 +1,282 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* Classic scholarly color scheme */
+  body {
+    @apply bg-classic-50 text-warmgray-800;
+  }
+
+  /* Dark mode with classic warm tones */
+  .dark body {
+    @apply bg-warmgray-900 text-classic-100;
+  }
+
+  /* Classic font stack */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-accent-800;
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-classic-200;
+  }
+
+  /* Links with classic underline style */
+  a {
+    @apply text-accent-600 hover:text-accent-800 transition-colors duration-200;
+  }
+
+  .dark a {
+    @apply text-primary-400 hover:text-primary-300;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-gold-200 text-warmgray-900;
+  }
+
+  .dark ::selection {
+    @apply bg-primary-700 text-classic-50;
+  }
+}
+
+@layer components {
+  /* Classic button styles */
+  .btn-primary {
+    @apply bg-accent-700 hover:bg-accent-800 text-classic-50 font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply border-2 border-accent-600 text-accent-700 hover:bg-accent-50 font-medium px-6 py-3 rounded-lg transition-all duration-300;
+  }
+
+  .dark .btn-primary {
+    @apply bg-accent-600 hover:bg-accent-700;
+  }
+
+  .dark .btn-secondary {
+    @apply bg-primary-600 hover:bg-primary-700;
+  }
+
+  .dark .btn-outline {
+    @apply border-primary-500 text-primary-400 hover:bg-primary-900/30;
+  }
+
+  /* Classic card styles */
+  .card-classic {
+    @apply bg-white border border-classic-200 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+
+  .dark .card-classic {
+    @apply bg-warmgray-800 border-warmgray-700;
+  }
+
+  /* Classic input styles */
+  .input-classic {
+    @apply bg-classic-50 border border-classic-300 text-warmgray-800 rounded-lg px-4 py-2 focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200;
+  }
+
+  .dark .input-classic {
+    @apply bg-warmgray-800 border-warmgray-600 text-classic-100 focus:border-primary-500 focus:ring-primary-800;
+  }
+
+  /* Classic gradient backgrounds */
+  .bg-classic-gradient {
+    @apply bg-gradient-to-br from-classic-100 via-classic-50 to-gold-50;
+  }
+
+  .dark .bg-classic-gradient {
+    @apply bg-gradient-to-br from-warmgray-900 via-warmgray-800 to-warmgray-900;
+  }
+
+  /* Classic accent gradient */
+  .bg-accent-gradient {
+    @apply bg-gradient-to-r from-accent-700 via-accent-600 to-primary-700;
+  }
+
+  .dark .bg-accent-gradient {
+    @apply bg-gradient-to-r from-accent-700 via-accent-600 to-primary-600;
+  }
+
+  /* Classic decorative elements */
+  .decorative-line {
+    @apply h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent;
+  }
+
+  .dark .decorative-line {
+    @apply from-transparent via-gold-600 to-transparent;
+  }
+
+  /* Classic text colors */
+  .text-classic-heading {
+    @apply text-accent-900 font-serif font-bold;
+  }
+
+  .dark .text-classic-heading {
+    @apply text-classic-100;
+  }
+
+  .text-classic-body {
+    @apply text-warmgray-700 leading-relaxed;
+  }
+
+  .dark .text-classic-body {
+    @apply text-classic-200;
+  }
+
+  /* Classic borders */
+  .border-classic {
+    @apply border border-classic-300;
+  }
+
+  .dark .border-classic {
+    @apply border-warmgray-700;
+  }
+
+  /* Classic shadow with warm tones */
+  .shadow-classic {
+    box-shadow: 0 4px 6px -1px rgba(101, 58, 32, 0.1), 0 2px 4px -1px rgba(101, 58, 32, 0.06);
+  }
+
+  .shadow-classic-lg {
+    box-shadow: 0 10px 15px -3px rgba(101, 58, 32, 0.1), 0 4px 6px -2px rgba(101, 58, 32, 0.05);
+  }
+
+  /* Scroll progress bar - classic style */
+  .progress-bar-classic {
+    @apply bg-accent-600;
+    height: 4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    transition: width 0.3s ease-out;
+  }
+
+  .dark .progress-bar-classic {
+    @apply bg-primary-500;
+  }
+}
+
+@layer utilities {
+  /* Classic text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Classic backdrop blur with warm tint */
+  .backdrop-classic {
+    backdrop-filter: blur(12px);
+    background-color: rgba(250, 247, 242, 0.85);
+  }
+
+  .dark .backdrop-classic {
+    background-color: rgba(28, 25, 23, 0.85);
+  }
+
+  /* Classic gradient text */
+  .text-gradient-classic {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-800 via-accent-600 to-primary-700;
+  }
+
+  .dark .text-gradient-classic {
+    @apply from-primary-400 via-gold-500 to-primary-300;
+  }
+
+  /* Classic pattern backgrounds */
+  .pattern-classic {
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(212, 133, 61, 0.03) 10px,
+        rgba(212, 133, 61, 0.03) 20px
+      );
+  }
+
+  /* Vintage paper texture effect */
+  .texture-paper {
+    position: relative;
+  }
+
+  .texture-paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(255, 254, 245, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 250, 235, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Classic box with ornamental border */
+  .box-ornamental {
+    @apply border-2 border-double border-accent-400 bg-classic-50 p-6 rounded-lg;
+    box-shadow: inset 0 0 0 1px rgba(139, 68, 68, 0.1);
+  }
+
+  .dark .box-ornamental {
+    @apply border-primary-600 bg-warmgray-800;
+    box-shadow: inset 0 0 0 1px rgba(212, 133, 61, 0.2);
+  }
+}
+
+/* Custom scrollbar - classic style */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-classic-100;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-warmgray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-accent-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent-600;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-primary-600;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-700;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Classic focus styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-accent-400 ring-offset-2 ring-offset-classic-50;
+}
+
+.dark *:focus-visible {
+  @apply ring-primary-500 ring-offset-warmgray-900;
+}
+
+/* Print styles - maintain classic look */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

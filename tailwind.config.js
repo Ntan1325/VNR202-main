@@ -6,19 +6,73 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
       },
       colors: {
+        // Classic heritage color palette - Warm, scholarly tones
         primary: {
-          50: '#fef2f2',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',
-          900: '#7f1d1d',
+          50: '#fdf8f3',
+          100: '#f9ede0',
+          200: '#f3dbc1',
+          300: '#e9c197',
+          400: '#dea362',
+          500: '#d4853d',
+          600: '#b86e2f',
+          700: '#9a5728',
+          800: '#7c4624',
+          900: '#653a20',
+        },
+        // Classic burgundy/maroon for accents
+        accent: {
+          50: '#faf5f5',
+          100: '#f3e8e8',
+          200: '#e9d5d5',
+          300: '#d9b3b3',
+          400: '#c58585',
+          500: '#a85c5c',
+          600: '#8b4444',
+          700: '#733737',
+          800: '#5e2f2f',
+          900: '#4d2828',
+        },
+        // Classic beige/cream for backgrounds
+        classic: {
+          50: '#fdfcfb',
+          100: '#faf7f2',
+          200: '#f5efe4',
+          300: '#ebe2d1',
+          400: '#dccfb8',
+          500: '#c9b79a',
+          600: '#b09a7a',
+          700: '#8f7d5f',
+          800: '#766750',
+          900: '#625544',
+        },
+        // Warm gray for text and borders
+        warmgray: {
+          50: '#fafaf9',
+          100: '#f5f5f4',
+          200: '#e7e5e4',
+          300: '#d6d3d1',
+          400: '#a8a29e',
+          500: '#78716c',
+          600: '#57534e',
+          700: '#44403c',
+          800: '#292524',
+          900: '#1c1917',
+        },
+        // Gold accent for highlights
+        gold: {
+          50: '#fffef5',
+          100: '#fffaeb',
+          200: '#fff2c7',
+          300: '#ffe8a3',
+          400: '#ffd75f',
+          500: '#f4c430',
+          600: '#d4a017',
+          700: '#b88a0e',
+          800: '#936f0d',
+          900: '#78590c',
         },
       },
       animation: {
@@ -44,12 +98,35 @@ export default {
         DEFAULT: {
           css: {
             maxWidth: 'none',
-            color: 'inherit',
+            color: '#44403c',
             a: {
-              color: '#dc2626',
+              color: '#8b4444',
+              textDecoration: 'underline',
+              textDecorationColor: '#d9b3b3',
               '&:hover': {
-                color: '#b91c1c',
+                color: '#733737',
+                textDecorationColor: '#a85c5c',
               },
+            },
+            h1: {
+              color: '#5e2f2f',
+              fontWeight: '700',
+            },
+            h2: {
+              color: '#733737',
+              fontWeight: '600',
+            },
+            h3: {
+              color: '#8b4444',
+              fontWeight: '600',
+            },
+            strong: {
+              color: '#5e2f2f',
+              fontWeight: '600',
+            },
+            blockquote: {
+              borderLeftColor: '#d4853d',
+              color: '#57534e',
             },
           },
         },

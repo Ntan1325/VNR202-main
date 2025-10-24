@@ -71,7 +71,9 @@ const MessageBubbleInner = ({
           )}
 
           <div className="flex-1 space-y-3">
-            <div className="prose prose-sm sm:prose-base prose-invert max-w-none">
+            <div className={`prose prose-sm sm:prose-base max-w-none ${
+              isUser ? "prose-invert" : "prose-stone dark:prose-invert"
+            }`}>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {message.content}
               </ReactMarkdown>

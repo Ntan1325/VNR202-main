@@ -105,7 +105,7 @@ export default function Quiz() {
               {t('quiz.title')}
             </h1>
             <p className="text-white/85 text-lg max-w-2xl mx-auto">
-              Kiểm tra kiến thức của bạn về tư tưởng Hồ Chí Minh
+              Kiểm tra kiến thức của bạn về Lịch sử Đảng Cộng sản Việt Nam
             </p>
           </motion.div>
 

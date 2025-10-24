@@ -38,7 +38,7 @@ function AppContent() {
   React.useEffect(() => {
     document.documentElement.lang = i18n.language;
     document.title =
-      i18n.language === "vi" ? "Tư tưởng Hồ Chí Minh" : "Ho Chi Minh Ideology";
+      i18n.language === "vi" ? "VNR202 - Lịch sử Đảng Cộng sản Việt Nam" : "VNR202 - History of the Communist Party of Vietnam";
   }, [i18n.language]);
 
   return (

@@ -72,9 +72,9 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-xl font-extrabold bg-gradient-to-r from-white via-amber-100 to-pink-100 bg-clip-text text-transparent">
-                Ho Chi Minh Ideology
+                VNR202
               </h1>
-              <p className="text-xs text-white/80">Tư tưởng Hồ Chí Minh</p>
+              <p className="text-xs text-white/80">Lịch sử Đảng Cộng sản Việt Nam</p>
             </div>
           </Link>
 

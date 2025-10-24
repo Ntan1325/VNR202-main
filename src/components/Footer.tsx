@@ -56,13 +56,12 @@ export default function Footer() {
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-80" />
               </div>
               <span className="text-xl font-extrabold bg-gradient-to-r from-white via-amber-100 to-pink-100 bg-clip-text text-transparent">
-                Ho Chi Minh Ideology
+                VNR202
               </span>
             </div>
 
             <p className="text-sm text-white/80 max-w-md">
-              Nền tảng học tập hiện đại về tư tưởng Hồ Chí Minh và triết học
-              “Độc lập dân tộc &amp; Chủ nghĩa xã hội”.
+              Nền tảng học tập hiện đại về Lịch sử Đảng Cộng sản Việt Nam – từ thành lập đến phát triển và lãnh đạo đất nước.
             </p>
 
             <div className="flex space-x-4 pt-2">

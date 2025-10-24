@@ -55,8 +55,8 @@ export default function Chapters() {
           </h1>
           <p className="text-lg md:text-xl text-white/85 max-w-3xl mx-auto">
             {isVietnamese
-              ? `Khám phá các chương học về tư tưởng Hồ Chí Minh và triết học "Độc lập dân tộc & Chủ nghĩa xã hội"`
-              : `Explore chapters on Ho Chi Minh’s thought and the philosophy of "National Independence & Socialism"`}
+              ? `Khám phá các chương học về Lịch sử Đảng Cộng sản Việt Nam – từ thành lập đến lãnh đạo đất nước`
+              : `Explore chapters on the History of the Communist Party of Vietnam – from foundation to national leadership`}
           </p>
         </motion.div>
 

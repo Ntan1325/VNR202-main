@@ -12,13 +12,13 @@
             },
             "home": {
                 "hero": {
-                    "title": "Độc lập dân tộc & Chủ nghĩa xã hội",
-                    "subtitle": "Khám phá tư tưởng Hồ Chí Minh qua hành trình học tập hiện đại",
+                    "title": "Lịch sử Đảng Cộng sản Việt Nam",
+                    "subtitle": "Khám phá lịch sử vẻ vang của Đảng qua hành trình học tập hiện đại",
                     "cta": "Bắt đầu học tập"
                 },
                 "chapters": {
                     "title": "Khám phá các Chương",
-                    "subtitle": "Hành trình tìm hiểu tư tưởng Hồ Chí Minh sâu sắc",
+                    "subtitle": "Hành trình tìm hiểu lịch sử Đảng Cộng sản Việt Nam",
                     "explore": "Khám phá"
                 },
                 "articles": {
@@ -30,7 +30,7 @@
                 },
                 "stats": {
                     "title": "Thống kê học tập",
-                    "articles": "Bài viết triết học",
+                    "articles": "Bài viết lịch sử",
                     "languages": "Ngôn ngữ hỗ trợ",
                     "questions": "Câu hỏi quiz",
                     "chapters": "Chương học"
@@ -72,7 +72,7 @@
                 "dark": "Tối"
             },
             "footer": {
-                "copyright": "© 2024 Ho Chi Minh Ideology. Tất cả quyền được bảo lưu.",
+                "copyright": "© 2024 VNR202 – Lịch sử Đảng Cộng sản Việt Nam. Tất cả quyền được bảo lưu.",
                 "contact": "Liên hệ",
                 "privacy": "Chính sách bảo mật",
                 "terms": "Điều khoản sử dụng",
@@ -80,8 +80,8 @@
                 "support": "Hỗ trợ"
             },
             "chat": {
-                "title": "Trợ lý Hồ Chí Minh AI",
-                "subtitle": "Đặt câu hỏi về tư tưởng Hồ Chí Minh và nhận phản hồi tức thì.",
+                "title": "Trợ lý Lịch sử Đảng AI",
+                "subtitle": "Đặt câu hỏi về Lịch sử Đảng Cộng sản Việt Nam và nhận phản hồi tức thì.",
                 "inputPlaceholder": "Nhập câu hỏi của bạn...",
                 "send": "Gửi",
                 "clear": "Xoá hội thoại",
@@ -104,7 +104,7 @@
                 "aiTraining": {
                     "title": "Cách chúng tôi huấn luyện AI",
                     "description": "Chatbot AI của chúng tôi được huấn luyện bằng các prompts và tài liệu cụ thể của dự án để đảm bảo câu trả lời chính xác và đúng chủ đề.",
-                    "codeExample": "/train \"Chỉ trả lời các câu hỏi liên quan đến dự án của chúng tôi\"\n/context add syllabus_data.pdf\n/context add quiz_questions.json\n\n--- TRAINING RULES ---\nBạn là Trợ lý học thuật cho học phần HCM202 (Tư tưởng Hồ Chí Minh).\nCƠ SỞ DUY NHẤT: các tài liệu/giáo trình đã nạp cho hệ thống (hiện có “Chương III: Tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội”).\nYÊU CẦU TRẢ LỜI:\n1) Chỉ sử dụng thông tin có trong giáo trình; không suy diễn ngoài tài liệu, không bình luận thời sự/chính trị đương thời.\n2) Trình bày ngắn gọn, chính xác theo bối cảnh lịch sử: nêu khái niệm → luận điểm chính → dẫn chứng/niên đại/ trích dẫn có trong giáo trình.\n3) Khi trích nguyên văn, đặt trong ngoặc kép và ghi nguồn theo chương/mục (ví dụ: “Không có gì quý hơn độc lập, tự do” – Chương III).\n4) Nếu câu hỏi nằm ngoài phạm vi môn học hoặc đòi quan điểm/đánh giá không có trong giáo trình, TỪ CHỐI LỊCH SỰ bằng ngôn ngữ hiện tại, ví dụ: “Xin lỗi, câu hỏi này vượt phạm vi giáo trình HCM202/Chương hiện có nên mình không thể trả lời. Bạn có thể hỏi lại theo nội dung của chương nhé?”\n5) Nếu thông tin không có/không rõ trong giáo trình, nói thẳng “không thấy trong giáo trình” thay vì suy đoán.\n6) Giữ thái độ trung lập, tôn trọng; khuyến khích tinh thần tự học; tránh ngôn từ kích động.\n\nYou are the academic TA for course HCM202 (Ho Chi Minh Thought).\nSOLE GROUNDING: only the course materials loaded into the system (currently “Chapter III: Ho Chi Minh’s thought on national independence and socialism”).\nANSWERING RULES:\n1) Use information strictly from the course text; no speculation beyond it; no commentary on current politics/events.\n2) Be concise and historically accurate: define → key theses → evidence/dates/quotes present in the text.\n3) For verbatim quotes, use quotation marks and cite chapter/section (e.g., “Nothing is more precious than independence and freedom” – Chapter III).\n4) If a question falls outside the course scope or seeks opinions not in the text, POLITELY DECLINE in the current UI language, e.g.: “Sorry, that’s outside the scope of HCM202/the loaded chapter, so I can’t answer. Please reframe within the chapter’s content.”\n5) If the text doesn’t contain the requested info, say so explicitly instead of guessing.\n6) Maintain neutrality and respect; encourage learning; avoid inflammatory language.",
+                    "codeExample": "/train \"Chỉ trả lời các câu hỏi liên quan đến dự án của chúng tôi\"\n/context add syllabus_data.pdf\n/context add quiz_questions.json\n\n--- TRAINING RULES ---\nBạn là Trợ lý học thuật cho học phần VNR202 (Lịch sử Đảng Cộng sản Việt Nam).\nCƠ SỞ DUY NHẤT: các tài liệu/giáo trình đã nạp cho hệ thống về Lịch sử Đảng Cộng sản Việt Nam.\nYÊU CẦU TRẢ LỜI:\n1) Chỉ sử dụng thông tin có trong giáo trình; không suy diễn ngoài tài liệu, không bình luận thời sự/chính trị đương thời.\n2) Trình bày ngắn gọn, chính xác theo bối cảnh lịch sử: nêu khái niệm → luận điểm chính → dẫn chứng/niên đại/sự kiện có trong giáo trình.\n3) Khi trích nguyên văn, đặt trong ngoặc kép và ghi nguồn theo chương/mục.\n4) Nếu câu hỏi nằm ngoài phạm vi môn học hoặc đòi quan điểm/đánh giá không có trong giáo trình, TỪ CHỐI LỊCH SỰ bằng ngôn ngữ hiện tại, ví dụ: \"Xin lỗi, câu hỏi này vượt phạm vi giáo trình VNR202 nên mình không thể trả lời. Bạn có thể hỏi lại theo nội dung của chương nhé?\"\n5) Nếu thông tin không có/không rõ trong giáo trình, nói thẳng \"không thấy trong giáo trình\" thay vì suy đoán.\n6) Giữ thái độ trung lập, tôn trọng; khuyến khích tinh thần tự học; tránh ngôn từ kích động.\n\nYou are the academic TA for course VNR202 (History of the Communist Party of Vietnam).\nSOLE GROUNDING: only the course materials loaded into the system about the History of the Communist Party of Vietnam.\nANSWERING RULES:\n1) Use information strictly from the course text; no speculation beyond it; no commentary on current politics/events.\n2) Be concise and historically accurate: define → key theses → evidence/dates/events present in the text.\n3) For verbatim quotes, use quotation marks and cite chapter/section.\n4) If a question falls outside the course scope or seeks opinions not in the text, POLITELY DECLINE in the current UI language, e.g.: \"Sorry, that's outside the scope of VNR202, so I can't answer. Please reframe within the chapter's content.\"\n5) If the text doesn't contain the requested info, say so explicitly instead of guessing.\n6) Maintain neutrality and respect; encourage learning; avoid inflammatory language.",
                     "note": "Bằng cách cung cấp prompts và tài liệu, chúng tôi hướng dẫn AI tập trung và hữu ích hơn. Tuy nhiên, câu trả lời do AI tạo ra có thể chưa hoàn toàn chính xác và cần được kiểm chứng.",
                     "qrTitle": "Quét để truy cập website"
                 }
@@ -124,13 +124,13 @@
             },
             "home": {
                 "hero": {
-                    "title": "National Independence & Socialism",
-                    "subtitle": "Explore Ho Chi Minh's thought through modern learning journey",
+                    "title": "History of the Communist Party of Vietnam",
+                    "subtitle": "Explore the glorious history of the Party through modern learning journey",
                     "cta": "Start Learning"
                 },
                 "chapters": {
                     "title": "Explore Chapters",
-                    "subtitle": "Journey to discover Hồ Chí Minh philosophical thoughts",
+                    "subtitle": "Journey to discover the History of the Communist Party of Vietnam",
                     "explore": "Explore"
                 },
                 "articles": {
@@ -142,7 +142,7 @@
                 },
                 "stats": {
                     "title": "Learning Statistics",
-                    "articles": "Philosophy Articles",
+                    "articles": "History Articles",
                     "languages": "Languages Supported",
                     "questions": "Quiz Questions",
                     "chapters": "Learning Chapters"
@@ -187,13 +187,13 @@
                 "contact": "Contact",
                 "privacy": "Privacy Policy",
                 "terms": "Terms of Service",
-                "copyright": "© 2024 Ho Chi Minh Ideology. All rights reserved.",
+                "copyright": "© 2024 VNR202 – History of the Communist Party of Vietnam. All rights reserved.",
                 "links": "Links",
                 "support": "Support the project"
             },
             "chat": {
-                "title": "Ho Chi Minh AI Assistant",
-                "subtitle": "Ask about Ho Chi Minh's thought and get instant answers.",
+                "title": "Party History AI Assistant",
+                "subtitle": "Ask about the History of the Communist Party of Vietnam and get instant answers.",
                 "inputPlaceholder": "Type your question...",
                 "send": "Send",
                 "clear": "Clear conversation",
@@ -216,7 +216,7 @@
                 "aiTraining": {
                     "title": "How We Train Our AI",
                     "description": "Our AI chatbot is trained using project-specific prompts and documents to ensure accurate, on-topic answers.",
-                    "codeExample": "/train \"Answer only questions related to our project\"\n/context add syllabus_data.pdf\n/context add quiz_questions.json",
+                    "codeExample": "/train \"Answer only questions related to VNR202\"\n/context add party_history_syllabus.pdf\n/context add quiz_questions.json",
                     "note": "By feeding prompts and documents, we guide AI to stay focused and helpful.",
                     "qrTitle": "Scan to visit our website"
                 }

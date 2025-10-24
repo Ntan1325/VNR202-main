@@ -1,74 +1,98 @@
-const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
+const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models";
 
 export type ChatRequestMessage = {
-    role: "system" | "user" | "assistant";
-    content: string;
+    role: "user" | "model";
+    parts: { text: string }[];
 };
 
-export interface GroqChatUsage {
-    prompt_tokens: number;
-    completion_tokens: number;
-    total_tokens: number;
+export interface GeminiUsage {
+    promptTokenCount?: number;
+    candidatesTokenCount?: number;
+    totalTokenCount?: number;
 }
 
-interface GroqChatChoice {
-    message: {
-        role: "assistant";
-        content: string;
-    };
-    finish_reason: string | null;
+interface GeminiResponse {
+    candidates: Array<{
+        content: {
+            parts: Array<{
+                text: string;
+            }>;
+            role: string;
+        };
+        finishReason?: string;
+    }>;
+    usageMetadata?: GeminiUsage;
 }
 
-interface GroqChatResponse {
-    choices: GroqChatChoice[];
-    usage?: GroqChatUsage;
-}
-
-export async function callGroqChat(options: {
+export async function callGeminiChat(options: {
     apiKey?: string;
     model: string;
-    messages: ChatRequestMessage[];
+    messages: Array<{ role: "system" | "user" | "assistant"; content: string }>;
     temperature?: number;
-}): Promise<{ content: string; usage?: GroqChatUsage } | null> {
+}): Promise<{ content: string; usage?: GeminiUsage } | null> {
     const { apiKey, model, messages, temperature = 0.7 } = options;
 
     if (!apiKey) {
-        console.warn("GROQ_API_KEY is missing. Skip calling Groq API.");
+        console.warn("GEMINI_API_KEY is missing. Skip calling Gemini API.");
         return null;
     }
 
-    const response = await fetch(GROQ_ENDPOINT, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-            model,
-            messages,
+    const systemMessage = messages.find(m => m.role === "system");
+    const conversationMessages = messages.filter(m => m.role !== "system");
+
+    const geminiMessages: ChatRequestMessage[] = conversationMessages.map(msg => ({
+        role: msg.role === "user" ? "user" : "model",
+        parts: [{ text: msg.content }]
+    }));
+
+    const requestBody: any = {
+        contents: geminiMessages,
+        generationConfig: {
             temperature,
-            stream: false,
-        }),
-    });
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 8192,
+        }
+    };
+
+    if (systemMessage) {
+        requestBody.systemInstruction = {
+            parts: [{ text: systemMessage.content }]
+        };
+    }
+
+    const response = await fetch(
+        `${GEMINI_ENDPOINT}/${model}:generateContent?key=${apiKey}`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+        }
+    );
 
     if (!response.ok) {
         const errorText = await response.text().catch(() => "");
-        console.error("Groq API error", response.status, errorText);
+        console.error("Gemini API error", response.status, errorText);
         return null;
     }
 
-    const data: GroqChatResponse = await response.json();
-    const content = data.choices?.[0]?.message?.content?.trim();
+    const data: GeminiResponse = await response.json();
+    const content = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
     if (!content) {
         return null;
     }
 
-    // TODO: Support streaming responses via ReadableStream once needed.
-    // To switch to OpenRouter, update the GROQ_ENDPOINT and headers to match their API.
+    const usage: GeminiUsage | undefined = data.usageMetadata ? {
+        promptTokenCount: data.usageMetadata.promptTokenCount,
+        candidatesTokenCount: data.usageMetadata.candidatesTokenCount,
+        totalTokenCount: data.usageMetadata.totalTokenCount,
+    } : undefined;
 
     return {
         content,
-        usage: data.usage,
+        usage,
     };
 }

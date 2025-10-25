@@ -111,29 +111,8 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
     star.rotation.x = Math.PI;
     scene.add(star);
 
-    const hammerGeometry = new THREE.BoxGeometry(0.5, 4, 0.5);
-    const sickleGeometry = new THREE.TorusGeometry(2, 0.3, 8, 32, Math.PI);
-
-    const metalMaterial = new THREE.MeshStandardMaterial({
-      color: 0x8B0000,
-      emissive: 0x8B0000,
-      emissiveIntensity: 0,
-      metalness: 0.9,
-      roughness: 0.1
-    });
-
-    const hammer = new THREE.Mesh(hammerGeometry, metalMaterial);
-    const sickle = new THREE.Mesh(sickleGeometry, metalMaterial);
-
-    hammer.position.set(-2, 1, 0);
-    hammer.rotation.z = Math.PI / 4;
-    sickle.position.set(1, -1, 0);
-    sickle.rotation.z = -Math.PI / 4;
-
     const emblemGroup = new THREE.Group();
     emblemGroup.add(star);
-    emblemGroup.add(hammer);
-    emblemGroup.add(sickle);
     emblemGroup.scale.set(0, 0, 0);
     emblemGroup.position.z = -10;
     scene.add(emblemGroup);
@@ -214,7 +193,6 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
         directionalLight.intensity = 2;
 
         starMaterial.emissiveIntensity = 3;
-        metalMaterial.emissiveIntensity = 3;
 
         const positions = particlesGeometry.attributes.position.array as Float32Array;
         for (let i = 0; i < particleCount; i++) {

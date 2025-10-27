@@ -4,6 +4,14 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Log request để debug
+  console.log('📧 Feedback notification API called:', {
+    method: req.method,
+    body: req.body,
+    hasResendKey: !!process.env.RESEND_API_KEY,
+    notificationEmail: process.env.NOTIFICATION_EMAIL || 'huyhanhoppo@gmail.com'
+  });
+
   // Chỉ cho phép POST request
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -73,7 +81,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Gửi email notification
     const { data, error } = await resend.emails.send({
-      from: 'VNR202 Feedback <noreply@vnr202.edu.vn>',
+      from: 'VNR202 Feedback <onboarding@resend.dev>',
       to: [process.env.NOTIFICATION_EMAIL || 'huyhanhoppo@gmail.com'],
       subject: `📝 Feedback mới từ VNR202 - Đánh giá ${rating}/5`,
       html: emailHtml,

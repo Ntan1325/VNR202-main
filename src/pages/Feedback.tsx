@@ -24,24 +24,53 @@ export default function Feedback() {
 
     setIsSubmitting(true);
 
-    const { error: insertError } = await supabase.from("feedback").insert([
-      {
-        rating,
-        feedback,
-        email: email || null,
-        language: i18n.language,
-      },
-    ]);
+    try {
+      // Lưu feedback vào database
+      const { error: insertError } = await supabase.from("feedback").insert([
+        {
+          rating,
+          feedback,
+          email: email || null,
+          language: i18n.language,
+        },
+      ]);
 
-    setIsSubmitting(false);
+      if (insertError) {
+        setError("Không thể gửi phản hồi. Vui lòng thử lại sau.");
+        console.error(insertError);
+        return;
+      }
 
-    if (insertError) {
+      // Gửi email notification
+      try {
+        const response = await fetch('/api/send-feedback-notification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            rating,
+            feedback,
+            email: email || null,
+            language: i18n.language,
+          }),
+        });
+
+        if (!response.ok) {
+          console.warn('Failed to send email notification, but feedback was saved');
+        }
+      } catch (notificationError) {
+        console.warn('Email notification failed:', notificationError);
+        // Không hiển thị lỗi cho user vì feedback đã được lưu thành công
+      }
+
+      setSubmitted(true);
+    } catch (error) {
       setError("Không thể gửi phản hồi. Vui lòng thử lại sau.");
-      console.error(insertError);
-      return;
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setSubmitted(true);
   };
 
   if (submitted) {
@@ -237,8 +266,8 @@ export default function Feedback() {
         >
           <h3 className="font-semibold text-white mb-3">Các cách khác để liên hệ:</h3>
           <ul className="space-y-2 text-sm text-white/85">
-            <li>• Email: support@e-learning-philosophy.com</li>
-            <li>• Điện thoại: (84) 123-456-789</li>
+            <li>• Email: nhuttan1325@gmail.com</li>
+            <li>• Điện thoại: 0399189976 </li>
             <li>• Facebook: Ho Chi Minh Ideology Vietnam</li>
           </ul>
         </motion.div>
